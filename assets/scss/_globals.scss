@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@200;300;400;500;700&display=swap');
+
+.d-flex {
+    display: flex;
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex-space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.container {
+    margin: 0 auto;
+    @include breakpoint(mobileonly) {
+        max-width: rem(460);
+    }
+    @include breakpoint(phablet) {
+        max-width: rem(660);
+    }
+    @include breakpoint(tablet) {
+        max-width: rem(960);
+    }
+    @include breakpoint(laptop) {
+        max-width: rem(1100);
+    }
+    @include breakpoint(desktop) {
+        max-width: rem(1360);
+    }
+}
+
+.banner-container {
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+// .container-pd {
+//     padding-left: 15px;
+//     padding-right: 15px;
+// }
+
+.active-mobil-menu {
+    display: flex !important;
+    transform: translateX(0%) !important;
+}
