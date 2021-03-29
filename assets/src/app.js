@@ -46,8 +46,18 @@ footerWrapper.addEventListener('click', showFooter)
 
 function showFooter(e) {
     let target = e.target.nextElementSibling
-    console.log(target);
     if (target && target.classList && target.classList.contains('footer__list') && innerWidth <= 450) {
         target.classList.toggle('visible')
     }
 }
+
+window.addEventListener("scroll", (event) => {
+    const backDiv = document.getElementById('go-back')
+    let scroll = this.scrollY;
+    console.log(backDiv);
+    if (scroll >= 726) {
+        backDiv.style.opacity = "1"
+    } else {
+        backDiv.style.opacity = "0"
+    }
+});
