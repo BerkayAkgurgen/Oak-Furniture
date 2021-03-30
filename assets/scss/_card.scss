@@ -261,33 +261,45 @@
 
     &__col {
         text-align: center;
-
+        
         #{$this}__image {
-            cursor: pointer;
             position: relative;
-            // overflow: hidden;
             &:hover {
                 #{$this}__image-add-favorite {
                     opacity: 1;
                 }
             }
-
+            
             img {
+                overflow: hidden;
                 vertical-align: middle;
             }
-
+            
             #{$this}__image-add-favorite {
                 position: absolute;
+                cursor: pointer;
                 transition: all 0.3s ease-in;
                 transform: translate(-50%);
                 left: 50%;
                 display: flex;
                 bottom: 0;
+                width: 75%;
                 opacity: 0;
                 border-radius: 5px;
                 background-color: $header-color;
+                white-space: nowrap;
                 
                 #{$this}__open-overlay {
+                    padding: 1px 15px 0;
+                    color: white;
+                    font-size: rem(10);
+                    letter-spacing: 0.1rem;
+                    flex: 1;
+                    line-height: 25px;
+                    font-weight: $font-weight-bold;
+                }
+                #{$this}__add-cart {
+                    flex: 1;
                     padding: 1px 15px 0;
                     color: white;
                     font-size: rem(10);
@@ -297,8 +309,7 @@
                 }
                 
                 #{$this}__favorite-btn {
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
+                    border-radius: 5px;
                     background-color: gray;
                     color: white;
                     padding: rem(5);

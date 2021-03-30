@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset='utf-8'>
@@ -83,11 +83,10 @@
             </div>
         </header>
         <!-- Banner section -->
-        <main id="main-banner">
+        <div id="main-banner">
             <div class="banner-container d-flex-column">
                 <div class="banner__mobile-promotion-card">
-                    <h5 class="banner__card-header">70% off big sale for <span class="animate-text">office</span>
-                        furniture
+                    <h5 class="banner__card-header">70% off big sale for all furniture
                     </h5>
                 </div>
                 <div class="banner">
@@ -107,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
         <!-- Card Section -->
         <main id="main-card">
             <div class="button-container">
@@ -116,7 +115,8 @@
                         <div class="button__category-filter">
                             <h5 class="button__mobile-filter-menu">categories <i class="fas fa-sort-down"></i></h5>
                             <ul class="button__favorite-menu">
-                                <li class="button__favorite-menu-item isactive" style="padding-left: 0px;">All</li>
+                                <li class="button__favorite-menu-item isactive" data-category=""
+                                    style="padding-left: 0px;">All</li>
                                 <li class="button__favorite-menu-item">Office</li>
                                 <li class="button__favorite-menu-item">Kitchen</li>
                                 <li class="button__favorite-menu-item">Home</li>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <section id="card-section">
+            <div id="card-section">
                 <div class="card-container">
                     <div class="card card-row">
                         <div class="card__col">
@@ -159,7 +159,9 @@
                                 <img src="./assets/images/black-kitchen-set-min.jpg" loading="lazy" alt="">
                                 <div class="card__image-add-favorite">
                                     <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
+                                    <span class="card__favorite-btn"><i style="pointer-events: none;"
+                                            class="fas fa-heart" data-id=""></i></span>
+                                    <p class="card__add-cart">ADD CART</p>
                                 </div>
                             </div>
                             <div class="card__info">
@@ -167,104 +169,66 @@
                                 <em class="card__price">$449.99</em>
                             </div>
                         </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/home-chair-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Pretty Water Green Sofa</h5>
-                                <em class="card__price">$119.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/home-gray-sofa-set-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Luxury Furniture Set</h5>
-                                <em class="card__price">$99.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/home-sofa-set-gray-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Studie Home Set</h5>
-                                <em class="card__price">$99.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/leather-sofa-set-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Leather Living Room Set</h5>
-                                <em class="card__price">$139.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/home-sofa-set-two-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Retro Sofa Set</h5>
-                                <em class="card__price">$239.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/kitchen-desk-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Minimal Kitchen Set</h5>
-                                <em class="card__price">$299.99</em>
-                            </div>
-                        </div>
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/kitchen-set-min.jpg" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i class="fas fa-heart"></i></span>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Oak Kitchen Set</h5>
-                                <em class="card__price">$340.99</em>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </main>
         <!-- Favorite Section -->
-        <aside id="favorite">
+        <aside id="cart-aside">
+            <div class="aside-overlay"></div>
+            <div class="cart-container">
+                <div class="cart cart d-flex-column">
+                    <div class="cart__close-btn">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <h4 class="cart__header">In Cart</h4>
+                    <div class="cart__card d-flex-space">
+                        <div class="cart__card-image">
+                            <img src="./assets/images/orrifce-full-set-min.jpg" alt="product">
+                        </div>
+                        <div class="cart__card-information">
+                            <h6 class="cart__card-title">Black Kitchen Set</h6>
+                            <em class="cart__card-price">$99.99</em>
+                            <p class="cart__remove-card">Remove Product</p>
+                        </div>
+                        <div class="cart__card-amount d-flex-column">
+                            <i class="fas fa-chevron-up"></i>
+                            <span id="product-amount">1</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="cart__total-amount">Your Total: <span id="total-amount">$40</span></div>
+                    <div class="cart__delete-all-btn">
+                        <button>Remove All Item</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Favorite Aside -->
+        <aside id="favorite-aside">
+            <div class="aside-overlay"></div>
+            <div class="favorite-container ">
+                <div class="favorite favorite d-flex-column">
+                    <div class="favorite__close-btn">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <h4 class="favorite__header">In favorite</h4>
+                    <div class="favorite__card d-flex-space">
+                        <div class="favorite__card-image">
+                            <img src="./assets/images/orrifce-full-set-min.jpg" alt="product">
+                        </div>
+                        <div class="favorite__card-information">
+                            <h6 class="favorite__card-title">Black Kitchen Set</h6>
+                            <em class="favorite__card-price">$99.99</em>
+                            <p class="favorite__remove-card">Remove Product From Favorite</p>
+                        </div>
 
+                    </div>
+                    <div class="favorite__delete-all-btn">
+                        <button>Remove All Favorites</button>
+                    </div>
+                </div>
+            </div>
         </aside>
         <!-- Footer -->
         <footer id="footer">
@@ -344,7 +308,49 @@
                     </div>
                 </div>
                 <div class="footer__copyright">&copy; Qode Interactive, All Rights Reserved</div>
+            </div>
         </footer>
+        <section id="product-overlay">
+            <div class="product-overlay-bg"></div>
+            <div class="overlay-container">
+                <div class="overlay-wrapper">
+                    <div class="product d-flex-column">
+                        <h4 class="product__info">PRODUCT INFO</h4>
+                        <div class="product__overlay-close"><i class="fas fa-times"></i></div>
+                        <div class="product__overlay-image">
+                            <img src="./assets/images/black-kitchen-set-min.jpg" alt="product-details">
+                        </div>
+                        <div class="product__details d-flex-column">
+                            <div class="product__details-title">
+                                <h4>Black Kitchen Set</h4>
+                            </div>
+                            <div class="product__details-price"><em>$149.99</em></div>
+                            <div class="product__details-description">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a!</p>
+                            </div>
+                            <div class="product__overlay-addcart d-flex">
+                                <span class="product__quentity">Quantity</span>
+                                <div class="product__overlay-add-quentity-number">
+                                    <i class="fas fa-caret-left"></i>
+                                    <span>1</span>
+                                    <i class="fas fa-caret-right"></i>
+                                </div>
+                            </div>
+                            <div class="product__overlay-add-favorite-and-cart">
+                                <div class="product__add-favorite d-flex">
+                                    <i class="far fa-heart"></i>
+                                    <p>ADD TO WISHLIST</p>
+                                </div>
+                                <div class="produt__add-cart d-flex">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <p>ADD TO CART</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <a href="#" class="go__back-btn" id="go-back"><i class="fas fa-chevron-up"></i></a>
     </div>
     <!-- JS -->

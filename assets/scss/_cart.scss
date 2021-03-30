@@ -1,16 +1,16 @@
-#favorite-aside {
+#cart-aside {
     position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
     z-index: 99999999999999 !important;
 
-    .favorite-container.isactive {
+    .cart-container.isactive {
         transform: translate(0%);
-        display: block !important;
+        display: block;
     }
 
-    .favorite-container {
+    .cart-container {
         width: rem(360);
         overflow: hidden;
         display: none;
@@ -48,7 +48,7 @@
     transition: all 0.6s ease-in;
 }
 
-.favorite {
+.cart {
     position: relative;
     z-index: 999999999999999 !important;
     transition: transform .7s cubic-bezier(.25, 1, .2, 1);
@@ -119,6 +119,26 @@
         }
 
 
+    }
+
+    &__card-amount {
+        text-align: center;
+
+        i {
+            cursor: pointer;
+        }
+    }
+
+    &__total-amount {
+        text-align: center;
+        font-size: rem($font-size-big);
+        color: white;
+        opacity: 0.9;
+        margin-bottom: rem(20);
+
+        span {
+            margin-left: 0.3rem;
+        }
     }
 
     &__delete-all-btn {

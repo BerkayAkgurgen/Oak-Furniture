@@ -9,7 +9,46 @@ const footerWrapper = document.querySelector('.footer__grid-item')
 const filterCategoryBtn = document.querySelector('.button__mobile-filter-menu')
 const filterPriceBtn = document.querySelector('.button__price-filter-btn')
 const priceFilterList = document.querySelectorAll('.button__price-filter-card ul')
-const dene = document.querySelector('.button__filter-price-by-range-item')
+const favoriteCloseBtn = document.querySelector('.cart__close-btn')
+const favoriteContainer = document.querySelector('.cart-container')
+const openCart = document.querySelector('.topnav__cart-section')
+const asideOverlay = document.querySelector('.aside-overlay')
+const productOverlay = document.querySelector('#product-overlay')
+const closeProductOverlay = document.querySelector('.product__overlay-close')
+const productOverlayBG = document.querySelector('.product-overlay-bg')
+const openProductOverlayBtn = document.querySelector('.card__open-overlay')
+
+productOverlayBG.addEventListener('click', () => {
+    productOverlay.classList.toggle('isactivated')
+    document.body.style.overflow = "visible"
+})
+
+closeProductOverlay.addEventListener('click', () => {
+    productOverlay.classList.toggle('isactivated')
+    document.body.style.overflow = "visible"
+})
+
+openProductOverlayBtn.addEventListener('click', (e) => {
+    productOverlay.classList.toggle('isactivated')
+    document.body.style.overflow = "hidden"
+})
+
+
+favoriteCloseBtn.addEventListener('click', (e) => {
+    favoriteContainer.classList.remove('isactive')
+    asideOverlay.classList.remove('isactive')
+})
+
+asideOverlay.addEventListener('click', () => {
+    favoriteContainer.classList.remove('isactive')
+    asideOverlay.classList.remove('isactive')
+
+})
+
+openCart.addEventListener('click', () => {
+    favoriteContainer.classList.add('isactive')
+    asideOverlay.classList.add('isactive')
+})
 
 filterCategoryBtn.addEventListener('click', (e) => {
     let target = e.target.classList
@@ -54,10 +93,9 @@ function showFooter(e) {
 window.addEventListener("scroll", (event) => {
     const backDiv = document.getElementById('go-back')
     let scroll = this.scrollY;
-    console.log(backDiv);
     if (scroll >= 726) {
         backDiv.style.opacity = "1"
     } else {
         backDiv.style.opacity = "0"
     }
-});
+})

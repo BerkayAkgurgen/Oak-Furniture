@@ -1,5 +1,4 @@
 #main-banner {
-    margin-top: rem(96);
 
     @include breakpoint(phablet) {
         margin-left: rem(40);

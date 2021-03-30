@@ -1,5 +1,5 @@
 #header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
@@ -70,18 +70,20 @@
         }
 
         #{$this}__cart-section {
+            cursor: pointer;
             #{$this}__open-cart {
                 padding-right: rem(2px);
             }
-
+            
             #{$this}__cart-total-amount {
                 color: #929292;
                 font-size: $font-size-small;
                 font-weight: $font-weight-light;
             }
         }
-
+        
         #{$this}__favorites-section {
+            cursor: pointer;
             .fas {
                 padding-right: rem(5px);
                 font-size: rem(13px);
@@ -104,6 +106,7 @@
 
     &__medium-section {
         #{$this}__icon {
+            cursor: pointer;
             height: rem(20px);
             display: block;
 
@@ -142,7 +145,7 @@
         transition: transform .7s cubic-bezier(.25, 1, .2, 1);
         right: 0;
         transform: translateX(100%);
-        width: rem(340px);
+        width: rem(360);
         background-color: $mobile-menu-bg;
         height: 100vh;
         padding: rem(30) rem(70) rem(121);

@@ -42,4 +42,9 @@
             @content ;
         }
     }
+    @else if $point==xsmobileonlycard {
+        @media (max-width: rem(350)) {
+            @content ;
+        }
+    }
 }
