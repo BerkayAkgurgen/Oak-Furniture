@@ -58,7 +58,6 @@
                 opacity: 0;
                 transition: all 0.3s ease-in;
                 margin-top: rem(15);
-                cursor: pointer;
 
                 @include breakpoint (tablet) {
                     display: flex;
@@ -67,24 +66,31 @@
                     margin-top: 0;
                 }
 
-                &-item.isactive {
+                &-item.active {
                     color: black;
+                    pointer-events: none;
                 }
 
                 &-item {
                     padding-bottom: rem(15);
-                    color: $main-text-color;
-                    transition: all 0.5s ease;
+                    cursor: pointer;
                     font-weight: $font-weight-medium-bold;
+                    color: $main-text-color;
 
                     @include breakpoint(tablet) {
                         letter-spacing: 1px;
-                        padding: 0 rem(16);
                     }
 
                     &:hover {
                         color: black;
                     }
+
+                    transition: all 0.5s ease;
+
+                    @include breakpoint(tablet) {
+                        padding: 0 rem(16);
+                    }
+
                 }
             }
         }
@@ -241,18 +247,22 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 50px;
+
     @include breakpoint(phablet) {
         column-gap: 25px;
         grid-template-columns: 1fr 1fr;
     }
+
     @include breakpoint(tablet) {
         column-gap: 25px;
         grid-template-columns: 1fr 1fr;
     }
+
     @include breakpoint(laptop) {
         column-gap: 25px;
         grid-template-columns: 1fr 1fr 1fr;
     }
+
     @include breakpoint(desktop) {
         column-gap: 25px;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -261,20 +271,22 @@
 
     &__col {
         text-align: center;
-        
+        transition: all 0.3s ease-in;
+
         #{$this}__image {
             position: relative;
+
             &:hover {
                 #{$this}__image-add-favorite {
                     opacity: 1;
                 }
             }
-            
+
             img {
                 overflow: hidden;
                 vertical-align: middle;
             }
-            
+
             #{$this}__image-add-favorite {
                 position: absolute;
                 cursor: pointer;
@@ -288,7 +300,7 @@
                 border-radius: 5px;
                 background-color: $header-color;
                 white-space: nowrap;
-                
+
                 #{$this}__open-overlay {
                     padding: 1px 15px 0;
                     color: white;
@@ -298,6 +310,7 @@
                     line-height: 25px;
                     font-weight: $font-weight-bold;
                 }
+
                 #{$this}__add-cart {
                     flex: 1;
                     padding: 1px 15px 0;
@@ -307,7 +320,7 @@
                     line-height: 25px;
                     font-weight: $font-weight-bold;
                 }
-                
+
                 #{$this}__favorite-btn {
                     border-radius: 5px;
                     background-color: gray;
@@ -315,22 +328,33 @@
                     padding: rem(5);
                 }
             }
+
+            #{$this}__favorite-btn.isfavorite {
+                border-radius: 5px;
+                background-color: gray;
+                color: black;
+                padding: rem(5);
+
+                i {
+                    color: black;
+                }
+            }
+        }
+    }
+
+
+    #{$this}__info {
+        line-height: 22px;
+        margin: 22px 0 12px;
+
+        #{$this}__description {
+            font-size: 14px;
+            font-weight: $font-weight-medium-bold;
         }
 
-
-        #{$this}__info {
-            line-height: 22px;
-            margin: 22px 0 12px;
-
-            #{$this}__description {
-                font-size: 14px;
-                font-weight: $font-weight-medium-bold;
-            }
-
-            #{$this}__price {
-                font-weight: $font-weight-medium;
-                color: $main-text-color;
-            }
+        #{$this}__price {
+            font-weight: $font-weight-medium;
+            color: $main-text-color;
         }
     }
 }

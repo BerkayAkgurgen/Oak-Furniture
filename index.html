@@ -48,7 +48,7 @@
                     <div class="topnav__right-section">
                         <div class="topnav__cart-section">
                             <a href="#!" class="topnav__open-cart">cart</a>
-                            <span class="topnav__cart-total-amount">($0)</span>
+                            <span class="topnav__cart-total-amount">(0)</span>
                         </div>
                         <div class="topnav__favorites-section">
                             <i class="fas fa-heart"></i><a href="#!" class="topnav__go-favorites"></a><span
@@ -114,13 +114,6 @@
                     <div class="button__filter-section">
                         <div class="button__category-filter">
                             <h5 class="button__mobile-filter-menu">categories <i class="fas fa-sort-down"></i></h5>
-                            <ul class="button__favorite-menu">
-                                <li class="button__favorite-menu-item isactive" data-category=""
-                                    style="padding-left: 0px;">All</li>
-                                <li class="button__favorite-menu-item">Office</li>
-                                <li class="button__favorite-menu-item">Kitchen</li>
-                                <li class="button__favorite-menu-item">Home</li>
-                            </ul>
                         </div>
                         <div class="button__price-filter">
                             <h5 class="button__price-filter-btn">filter<i class="fas fa-sort-down"></i></h5>
@@ -128,21 +121,21 @@
                                 <!-- <h4 class="button__sort-price-header">Sort by</h4> -->
                                 <ul class="button__price-filter-by-range">
                                     <li class="button__filter-price-by-range-item isactiveitem">All</li>
-                                    <li class="button__filter-price-by-range-item" data-max-range="0">$0-$49</li>
-                                    <li class="button__filter-price-by-range-item" data-min-range="50"
-                                        data-max-range="199">
+                                    <li class="button__filter-price-by-range-item" data-min="0" data-max="49">$0-$49
+                                    </li>
+                                    <li class="button__filter-price-by-range-item" data-min="50" data-max="199">
                                         $50-$199</li>
-                                    <li class="button__filter-price-by-range-item" data-min-range="200"
-                                        data-max-range="499">
+                                    <li class="button__filter-price-by-range-item" data-min="200" data-max="499">
                                         200$-$499</li>
-                                    <li class="button__filter-price-by-range-item" data-min-range="500">$500+</li>
+                                    <li class="button__filter-price-by-range-item" data-min="500" data-max="1000000">
+                                        $500+</li>
                                 </ul>
                                 <ul class="button__price-filter-by-sort">
                                     <li class="button__filter-price-sort-item isactive">Default</li>
-                                    <li class="button__filter-price-sort-item" data-order-type="low-to-high">Price: Low
+                                    <li class="button__filter-price-sort-item" data-order="low">Price: Low
                                         to
                                         high</li>
-                                    <li class="button__filter-price-sort-item" data-order-type="high-to-low">Price: Higt
+                                    <li class="button__filter-price-sort-item" data-order="high">Price: Higt
                                         to
                                         low</li>
                                 </ul>
@@ -153,36 +146,21 @@
             </div>
             <div id="card-section">
                 <div class="card-container">
-                    <div class="card card-row">
-                        <div class="card__col">
-                            <div class="card__image">
-                                <img src="./assets/images/black-kitchen-set-min.jpg" loading="lazy" alt="">
-                                <div class="card__image-add-favorite">
-                                    <p class="card__open-overlay">QUICK LOOK</p>
-                                    <span class="card__favorite-btn"><i style="pointer-events: none;"
-                                            class="fas fa-heart" data-id=""></i></span>
-                                    <p class="card__add-cart">ADD CART</p>
-                                </div>
-                            </div>
-                            <div class="card__info">
-                                <h5 class="card__description">Black Kitchen Set</h5>
-                                <em class="card__price">$449.99</em>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="card card-row"></div>
                 </div>
             </div>
         </main>
         <!-- Favorite Section -->
         <aside id="cart-aside">
-            <div class="aside-overlay"></div>
+            <div class=" cart-aside"></div>
             <div class="cart-container">
-                <div class="cart cart d-flex-column">
+                <div class="cart d-flex-column">
                     <div class="cart__close-btn">
                         <i class="fas fa-times"></i>
                     </div>
                     <h4 class="cart__header">In Cart</h4>
-                    <div class="cart__card d-flex-space">
+                    <div class="cart__wrapper"></div>
+                    <!-- <div class="cart__card d-flex-space">
                         <div class="cart__card-image">
                             <img src="./assets/images/orrifce-full-set-min.jpg" alt="product">
                         </div>
@@ -196,8 +174,8 @@
                             <span id="product-amount">1</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
-                    </div>
-                    <div class="cart__total-amount">Your Total: <span id="total-amount">$40</span></div>
+                    </div> -->
+                    <div class="cart__total-amount">Your Total: <span id="total-amount">$0</span></div>
                     <div class="cart__delete-all-btn">
                         <button>Remove All Item</button>
                     </div>
@@ -206,14 +184,17 @@
         </aside>
         <!-- Favorite Aside -->
         <aside id="favorite-aside">
-            <div class="aside-overlay"></div>
-            <div class="favorite-container ">
+            <div class="aside-overlay favorite-aside-overlay"></div>
+            <div class="favorite-container">
                 <div class="favorite favorite d-flex-column">
                     <div class="favorite__close-btn">
                         <i class="fas fa-times"></i>
                     </div>
                     <h4 class="favorite__header">In favorite</h4>
-                    <div class="favorite__card d-flex-space">
+                    <div class="favorite__wrapper">
+
+                    </div>
+                    <!-- <div class="favorite__card d-flex-space">
                         <div class="favorite__card-image">
                             <img src="./assets/images/orrifce-full-set-min.jpg" alt="product">
                         </div>
@@ -222,8 +203,7 @@
                             <em class="favorite__card-price">$99.99</em>
                             <p class="favorite__remove-card">Remove Product From Favorite</p>
                         </div>
-
-                    </div>
+                    </div> -->
                     <div class="favorite__delete-all-btn">
                         <button>Remove All Favorites</button>
                     </div>
@@ -314,7 +294,7 @@
             <div class="product-overlay-bg"></div>
             <div class="overlay-container">
                 <div class="overlay-wrapper">
-                    <div class="product d-flex-column">
+                    <!-- <div class="product d-flex-column">
                         <h4 class="product__info">PRODUCT INFO</h4>
                         <div class="product__overlay-close"><i class="fas fa-times"></i></div>
                         <div class="product__overlay-image">
@@ -347,7 +327,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

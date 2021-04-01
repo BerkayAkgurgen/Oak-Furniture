@@ -5,7 +5,7 @@
     bottom: 0;
     z-index: 99999999999999 !important;
 
-    .favorite-container.isactive {
+    .favorite-container.isactivee {
         transform: translate(0%);
         display: block !important;
     }
@@ -31,7 +31,7 @@
     }
 }
 
-.aside-overlay.isactive {
+.aside-overlay.isactivee {
     display: block;
     opacity: 0.4;
 }
@@ -115,6 +115,7 @@
             p {
                 margin-top: rem(10);
                 color: white;
+                cursor: pointer;
             }
         }
 

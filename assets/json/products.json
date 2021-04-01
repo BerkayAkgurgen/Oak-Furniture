@@ -28,7 +28,7 @@
       },
       "fields": {
         "title": "Turquoise Single Sofa",
-        "type": "living-room",
+        "type": "living room",
         "price": 42.99,
         "image": {
           "fields": {
@@ -48,12 +48,12 @@
       },
       "fields": {
         "title": "Soft Sofa Set",
-        "type": "living-room",
+        "type": "living room",
         "price": 42.99,
         "image": {
           "fields": {
             "file": {
-              "url": "./assets/images/home-gray-sofe-set-min.jpg"
+              "url": "./assets/images/home-gray-sofa-set-min.jpg"
             }
           }
         }
@@ -68,7 +68,7 @@
       },
       "fields": {
         "title": "Special Living Room Set",
-        "type": "living-room",
+        "type": "living room",
         "price": 175.99,
         "image": {
           "fields": {
@@ -88,7 +88,7 @@
       },
       "fields": {
         "title": "Oak Desk Set",
-        "type": "living-room",
+        "type": "living room",
         "price": 128.99,
         "image": {
           "fields": {
@@ -108,7 +108,7 @@
       },
       "fields": {
         "title": "Triple Color Leather Set",
-        "type": "living-room",
+        "type": "living room",
         "price": 332.99,
         "image": {
           "fields": {
@@ -188,7 +188,7 @@
       },
       "fields": {
         "title": "Lux Leather Sofe Set",
-        "type": "living-room",
+        "type": "living room",
         "price": 589.99,
         "image": {
           "fields": {

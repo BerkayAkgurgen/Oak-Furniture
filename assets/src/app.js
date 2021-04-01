@@ -1,101 +1,85 @@
-const toggleButton = document.querySelector('.topnav__hamburger-icon')
-const closeMenu = document.querySelector('.fa-times')
-const mobileMenu = document.querySelector('.topnav__mobile-menu')
-const image = document.querySelector('.banner__image')
-const bannerHeader = document.querySelector('.banner__paragraph-header')
-const bannerParagraph = document.querySelector('.banner__paragraph-description')
-const footerButton = document.querySelectorAll('.footer__list-header')
-const footerWrapper = document.querySelector('.footer__grid-item')
-const filterCategoryBtn = document.querySelector('.button__mobile-filter-menu')
-const filterPriceBtn = document.querySelector('.button__price-filter-btn')
-const priceFilterList = document.querySelectorAll('.button__price-filter-card ul')
-const favoriteCloseBtn = document.querySelector('.cart__close-btn')
-const favoriteContainer = document.querySelector('.cart-container')
-const openCart = document.querySelector('.topnav__cart-section')
-const asideOverlay = document.querySelector('.aside-overlay')
-const productOverlay = document.querySelector('#product-overlay')
-const closeProductOverlay = document.querySelector('.product__overlay-close')
-const productOverlayBG = document.querySelector('.product-overlay-bg')
-const openProductOverlayBtn = document.querySelector('.card__open-overlay')
+eventListeners()
 
-productOverlayBG.addEventListener('click', () => {
-    productOverlay.classList.toggle('isactivated')
-    document.body.style.overflow = "visible"
-})
-
-closeProductOverlay.addEventListener('click', () => {
-    productOverlay.classList.toggle('isactivated')
-    document.body.style.overflow = "visible"
-})
-
-openProductOverlayBtn.addEventListener('click', (e) => {
-    productOverlay.classList.toggle('isactivated')
-    document.body.style.overflow = "hidden"
-})
+function eventListeners() {
+    const uı = new UI()
+    uı.productOverlayBG.addEventListener('click', () => {
+        uı.closeOverlay()
+    })
 
 
-favoriteCloseBtn.addEventListener('click', (e) => {
-    favoriteContainer.classList.remove('isactive')
-    asideOverlay.classList.remove('isactive')
-})
-
-asideOverlay.addEventListener('click', () => {
-    favoriteContainer.classList.remove('isactive')
-    asideOverlay.classList.remove('isactive')
-
-})
-
-openCart.addEventListener('click', () => {
-    favoriteContainer.classList.add('isactive')
-    asideOverlay.classList.add('isactive')
-})
-
-filterCategoryBtn.addEventListener('click', (e) => {
-    let target = e.target.classList
-    if (innerWidth < 800) {
-        if (target && target.contains('fas') || e.target.nextElementSibling.classList.toggle('isactive')) {
-            e.target.parentElement.nextElementSibling.classList.toggle('isactive')
-        }
-    }
-})
-
-filterPriceBtn.addEventListener('click', () => {
-    if (innerWidth < 800) {
-        priceFilterList.forEach(list => {
-            list.classList.toggle('isactive')
+    const request = new Request()
+    request.getResponse()
+        .then(product => {
+            uı.addProductToUI(product)
+            uı.addProductCategories(product)
+            uı.filterCategory(product)
+            uı.filterPrice(product)
         })
-    }
-})
+    // uı.openProductOverlayBtn.addEventListener('click', () => {
+    //     uı.openProductOverlayBtn()
+    // })
+    
 
-toggleButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active-mobil-menu')
-})
-
-closeMenu.addEventListener('click', () => {
-    mobileMenu.classList.remove('active-mobil-menu')
-})
-
-window.addEventListener('DOMContentLoaded', () => {
-    image.style.transform = "translateX(0%)"
-    bannerHeader.style.transform = "translateX(0%)"
-    bannerParagraph.style.transform = "translateX(0%)"
-})
-
-footerWrapper.addEventListener('click', showFooter)
-
-function showFooter(e) {
-    let target = e.target.nextElementSibling
-    if (target && target.classList && target.classList.contains('footer__list') && innerWidth <= 450) {
-        target.classList.toggle('visible')
-    }
+    uı.overlayWrapper.addEventListener('click', (e) => {
+        uı.toggleProductOverlay(e)
+    })
+    uı.cartWrapper.addEventListener('click', (e) => {
+        uı.deletProduct(e,null)
+        uı.productQuantity(e)
+    })
+    uı.favoriteWrapper.addEventListener('click', (e) => {
+        uı.deleteFavorite(e,null)
+    })
+    uı.deleteAllFavorite.addEventListener('click', () => {
+        uı.removeFavoriteProducts()
+    })
+    uı.deleteAllCart.addEventListener('click', () => {
+        uı.removeCartProducts()
+    })
+    uı.favoriteOverlay.addEventListener('click', () => {
+        uı.closeFromOverlay()
+    })
+    uı.closeFavoritesBtn.addEventListener('click', () => {
+        uı.closeFavorites()
+    })
+    uı.topnavFavorites.addEventListener('click', () => {
+        uı.openFavorites()
+    })
+    uı.cardRow.addEventListener('click', (e) => {
+        uı.addFavorite(e)
+        uı.addCart(e)
+        uı.openProductOverlay(e)
+    })
+    uı.cartCloseBtn.addEventListener('click', () => {
+        uı.closeCartAside()
+    })
+    uı.asideOverlay.addEventListener('click', () => {
+        uı.closeCartAside()
+    })
+    uı.openCart.addEventListener('click', () => {
+        uı.openCartAside()
+    })
+    uı.filterCategoryBtn.addEventListener('click', (e) => {
+        uı.toggleFilterCategoryMenu(e)
+    })
+    uı.filterPriceBtn.addEventListener('click', () => {
+        uı.toggleFilterPriceMenu()
+    })
+    uı.toggleButton.addEventListener('click', () => {
+        uı.showMobileMenu()
+    })
+    uı.closeMenu.addEventListener('click', () => {
+        uı.closeMobileMenu()
+    })
+    uı.footerWrapper.addEventListener('click', () => {
+        uı.showFooter()
+    })
+    window.addEventListener("scroll", () => {
+        uı.goTopBtn()
+    })
+    window.addEventListener('DOMContentLoaded', () => {
+        uı.productShowOnCart()
+        uı.calculateTotalPrice()
+        uı.addFavoritesToAside()
+    })
 }
-
-window.addEventListener("scroll", (event) => {
-    const backDiv = document.getElementById('go-back')
-    let scroll = this.scrollY;
-    if (scroll >= 726) {
-        backDiv.style.opacity = "1"
-    } else {
-        backDiv.style.opacity = "0"
-    }
-})
