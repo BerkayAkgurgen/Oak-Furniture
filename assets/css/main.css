@@ -1683,4 +1683,10 @@ template {
   background-color: white;
   color: #080808;
 }
+
+.cart__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly !important;
+}
 /*# sourceMappingURL=main.css.map */

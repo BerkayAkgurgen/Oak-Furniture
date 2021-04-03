@@ -6,29 +6,24 @@ function eventListeners() {
         uı.closeOverlay()
     })
 
-
     const request = new Request()
     request.getResponse()
-        .then(product => {
-            uı.addProductToUI(product)
-            uı.addProductCategories(product)
-            uı.filterCategory(product)
-            uı.filterPrice(product)
-        })
-    // uı.openProductOverlayBtn.addEventListener('click', () => {
-    //     uı.openProductOverlayBtn()
-    // })
-    
-
+    .then(product => {
+        uı.addProductToUI(product)
+        uı.addProductCategories(product)
+        uı.filterCategory(product)
+        uı.filterPrice(product)
+    })
     uı.overlayWrapper.addEventListener('click', (e) => {
         uı.toggleProductOverlay(e)
+        uı.addCartOnOverlay(e)
+        uı.addFavoriteOnOverlay(e)
     })
     uı.cartWrapper.addEventListener('click', (e) => {
-        uı.deletProduct(e,null)
-        uı.productQuantity(e)
+        uı.deleteProduct(e)
     })
     uı.favoriteWrapper.addEventListener('click', (e) => {
-        uı.deleteFavorite(e,null)
+        uı.deleteFavorite(e)
     })
     uı.deleteAllFavorite.addEventListener('click', () => {
         uı.removeFavoriteProducts()
@@ -82,4 +77,5 @@ function eventListeners() {
         uı.calculateTotalPrice()
         uı.addFavoritesToAside()
     })
+
 }

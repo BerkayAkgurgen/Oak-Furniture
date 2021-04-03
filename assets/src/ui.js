@@ -35,6 +35,8 @@ class UI {
         this.deleteAllCart = document.querySelector('.cart__delete-all-btn button')
         this.deleteAllFavorite = document.querySelector('.favorite__delete-all-btn button')
         this.topnavFavoritesAmount = document.querySelector('.topnav__favorites-amount')
+        this.cartList = []
+        this.favoriteList = []
     }
 
     openFavorites() {
@@ -116,7 +118,9 @@ class UI {
 
     addProductToUI(product) {
         let inCart = Storage.getCartFromStorage()
+        this.cartList = inCart
         let inFavorite = Storage.getFavoriteFromStorage()
+        this.favoriteList = inFavorite
         let findInCartElement = inCart.map(item => item.id)
         let findInFavoriteElement = inFavorite.map(item => item.id)
         if (product) {
@@ -212,8 +216,9 @@ class UI {
                 amount: 1,
                 image: e.target.parentElement.previousElementSibling.src,
             }
+            this.cartList.push(product)
             e.target.textContent = "IN CART"
-            Storage.addCartToStorage(product)
+            Storage.addCartToStorage(this.cartList)
             this.productShowOnCart()
             this.calculateTotalPrice()
             this.openCartAside()
@@ -232,12 +237,13 @@ class UI {
                 price: Number(e.target.parentElement.parentElement.nextElementSibling.firstElementChild.nextElementSibling.textContent.substring(1)),
                 image: e.target.parentElement.previousElementSibling.src,
             }
-            Storage.addFavoriteToStorage(product)
+            this.favoriteList.push(product)
+            Storage.addFavoriteToStorage(this.favoriteList)
             this.addFavoritesToAside()
             e.target.classList.add('isfavorite')
             this.openFavorites()
         } else if (e.target.classList.contains('isfavorite')) {
-            this.deleteFavorite(null, e.target.dataset.id)
+            this.deleteFavorite(e)
         } else {
             return
         }
@@ -277,26 +283,18 @@ class UI {
                             <div class="product__details-title">
                                 <h4>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent}</h4>
                             </div>
-                            <div class="product__details-price"><em>$${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.nextElementSibling.textContent}</em></div>
+                            <div class="product__details-price"><em>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.nextElementSibling.textContent}</em></div>
                             <div class="product__details-description">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a!</p>
                             </div>
-                            <div class="product__overlay-addcart d-flex">
-                                <span class="product__quentity">Quantity</span>
-                                <div class="product__overlay-add-quentity-number">
-                                    <i class="fas fa-caret-left"></i>
-                                    <span>1</span>
-                                    <i class="fas fa-caret-right"></i>
-                                </div>
-                            </div>
                             <div class="product__overlay-add-favorite-and-cart">
                                 <div class="product__add-favorite d-flex">
-                                    <i class="far fa-heart"></i>
-                                    <p>ADD TO WISHLIST</p>
+                                    <i class="far fa-heart" data-id="${e.target.dataset.id}"></i>
+                                    <p class="product__overlay-add-favorite" data-id="${e.target.dataset.id}">ADD TO WISHLIST</p>
                                 </div>
                                 <div class="produt__add-cart d-flex">
-                                    <i class="fas fa-cart-plus"></i>
-                                    <p>ADD TO CART</p>
+                                    <i class="fas fa-cart-plus" data-id="${e.target.dataset.id}"></i>
+                                    <p class="product__overlay-add-cart" data-id="${e.target.dataset.id}">ADD TO CART</p>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +306,7 @@ class UI {
 
     toggleProductOverlay(e) {
         let target = e.target.classList
-        if(target.contains('product__overlay-close') || target.contains('fa-times')) {
+        if (target.contains('product__overlay-close') || target.contains('fa-times')) {
             this.closeOverlay()
         }
     }
@@ -317,19 +315,14 @@ class UI {
         let product = Storage.getCartFromStorage()
         let productHTML = product.map(item => {
             return `
-            <div class="cart__card d-flex-space">
+            <div class="cart__card">
                         <div class="cart__card-image">
                             <img src="${item.image}" alt="product">
                         </div>
                         <div class="cart__card-information">
                             <h6 class="cart__card-title">${item.title}</h6>
                             <em class="cart__card-price">$${item.price}</em>
-                            <p class="cart__remove-card">Remove Product</p>
-                        </div>
-                        <div class="cart__card-amount d-flex-column">
-                            <i class="fas fa-chevron-up" data-id="${item.id}"></i>
-                            <span id="product-amount">${item.amount}</span>
-                            <i class="fas fa-chevron-down" data-id="${item.id}"></i>
+                            <p class="cart__remove-card" data-id="${item.id}">Remove Product</p>
                         </div>
                     </div>
             `
@@ -340,7 +333,7 @@ class UI {
     calculateTotalPrice() {
         let cartProduct = Storage.getCartFromStorage()
         let totalCartPrice = cartProduct.reduce((acc, curr) => {
-            return acc + curr.price
+            return acc + curr.price * curr.amount
         }, 0)
         this.navCartPrice.textContent = "(" + "$" + totalCartPrice.toFixed() + ")"
         this.cartPrice.textContent = "$" + totalCartPrice.toFixed()
@@ -365,34 +358,71 @@ class UI {
         this.addProductToUI()
     }
 
-    deletProduct() {
-
+    deleteProduct(e) {
+        let cart = Storage.getCartFromStorage()
+        this.cartList = cart.filter(item => item.id !== e.target.dataset.id)
+        if (e.target.classList.contains('cart__remove-card') && this.cartList.length !== 0) {
+            this.cartList.forEach(item => {
+                Storage.addCartToStorage(this.cartList)
+                this.productShowOnCart()
+                this.calculateTotalPrice()
+            })
+        } else if (e.target.classList.contains('cart__remove-card') && this.cartList.length === 0) {
+            localStorage.removeItem('cartProduct')
+            this.productShowOnCart()
+            this.navCartPrice.textContent = "(" + "$" + 0 + ")"
+            this.cartPrice.textContent = "$" + 0
+        }
     }
 
-    deleteFavorite(e, id) {
+    deleteFavorite(e) {
         let favorites = Storage.getFavoriteFromStorage()
-        let findFavorites = favorites.filter(item => item.id === e.target.dataset.id)
-        // if (e.target.classList.contains('favorite__remove-card') && findFavorites.length !== 0) {
-        //     findFavorites.forEach(item => {
-        //         localStorage.removeItem('favoriteProduct')
-        //         Storage.addFavoriteToStorage(item)
-        //     })
-        // } else {
-        //     localStorage.removeItem('favoriteProduct')
-        // }
+        this.favoriteList = favorites.filter(item => item.id !== e.target.dataset.id)
+        if (e.target.classList.contains('favorite__remove-card') && this.favoriteList.length !== 0) {
+            this.favoriteList.forEach(item => {
+                Storage.addFavoriteToStorage(this.favoriteList)
+            })
+            this.addFavoritesToAside(this.favoriteList)
+        } else if (e.target.classList.contains('favorite__remove-card') && this.favoriteList.length === 0) {
+            localStorage.removeItem('favoriteProduct')
+            this.addFavoritesToAside(this.favoriteList)
+        }
     }
 
-    productQuantity(e) {
-        let inCart = Storage.getCartFromStorage()
-        let target = e.target.classList
+    addCartOnOverlay(e) {
+        let classTarget = e.target.classList;
+        let availableCart = Storage.getCartFromStorage()
+        let checkCart = availableCart.find(item => item.id === e.target.dataset.id)
+        if (checkCart === undefined && classTarget.contains('product__overlay-add-cart') || classTarget.contains('fa-cart-plus')) {
+            const product = {
+                id: e.target.dataset.id,
+                title: e.target.parentElement.parentElement.parentElement.firstElementChild.textContent.trim(),
+                price: Number(e.target.parentElement.parentElement.previousElementSibling.previousElementSibling.textContent.substring(1)),
+                image: e.target.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.src,
+                amount: 1,
+            }
+            console.log(product);
+            this.cartList.push(product)
+            Storage.addCartToStorage(this.cartList)
+            this.calculateTotalPrice()
+            this.productShowOnCart()
+        }
+    }
 
-        if (target.contains('fa-chevron-up')) {
-            let findPlus = inCart.find(item => item.id === e.target.dataset.id)
-            findPlus.amount = findPlus.amount + 1
-            e.target.nextElementSibling.innerText = findPlus.amount
-        } else if (target.contains('fa-chevron-down')) {
-            // findPlus.amount = counter.decrement()
-            // e.target.previousElementSibling.textContent = counter.value()
+    addFavoriteOnOverlay(e) {
+        let classTarget = e.target.classList;
+        let availableCart = Storage.getFavoriteFromStorage()
+        let checkCart = availableCart.find(item => item.id === e.target.dataset.id)
+        if (checkCart === undefined && classTarget.contains('product__overlay-add-favorite') || classTarget.contains('fa-heart')) {
+            const product = {
+                id: e.target.dataset.id,
+                title: e.target.parentElement.parentElement.parentElement.firstElementChild.textContent.trim(),
+                price: Number(e.target.parentElement.parentElement.previousElementSibling.previousElementSibling.textContent.substring(1)),
+                image: e.target.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.src,
+            }
+            this.favoriteList.push(product)
+            Storage.addFavoriteToStorage(this.favoriteList)
+            this.addFavoritesToAside()
         }
     }
 }

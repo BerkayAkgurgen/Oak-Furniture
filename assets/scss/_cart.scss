@@ -64,7 +64,6 @@
     position: relative;
     z-index: 999999999999999 !important;
     transition: transform .7s cubic-bezier(.25, 1, .2, 1);
-
     color: white;
     $this: &;
 
@@ -174,4 +173,10 @@
             }
         }
     }
+}
+
+.cart__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly !important;
 }
