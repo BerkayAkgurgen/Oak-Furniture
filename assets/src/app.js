@@ -66,8 +66,8 @@ function eventListeners() {
     uı.closeMenu.addEventListener('click', () => {
         uı.closeMobileMenu()
     })
-    uı.footerWrapper.addEventListener('click', () => {
-        uı.showFooter()
+    uı.footerWrapper.addEventListener('click', (e) => {
+        uı.showFooter(e)
     })
     window.addEventListener("scroll", () => {
         uı.goTopBtn()
